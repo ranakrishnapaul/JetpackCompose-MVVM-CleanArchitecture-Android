@@ -29,8 +29,20 @@ The sample app layers its presentation through MVVM Clean Architecture design pa
 
 ## MVVM (Model-View-ViewModel) Clean architecture 
 
+   * Presentation Layer 
+   * Domain Layer  
+   * Data Layer
+     
+
 <img width="1394" alt="Screenshot 2025-03-17 at 1 04 49 AM" src="https://github.com/user-attachments/assets/ff8663ca-54e6-4673-8a24-e6991e988507" />
 
+
+#### SOLID is an acronym for five design principles that help create maintainable and scalable software:
+-	Single Responsibility Principle (SRP): A class should have only one reason to change.
+-	Open-Closed Principle (OCP): Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification.
+-	Liskov Substitution Principle (LSP): Subtypes must be substitutable for their base types without altering the correctness of the program.
+-	Interface Segregation Principle (ISP): Clients should not be forced to depend on interfaces they do not use.
+-	Dependency Inversion Principle (DIP): High-level modules should not depend on low-level modules. Both should depend on abstractions.
 
 
 ## Explanation of the components:
