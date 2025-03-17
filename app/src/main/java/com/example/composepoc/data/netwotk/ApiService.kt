@@ -4,10 +4,10 @@ import com.example.composepoc.data.model.ProductListDTO
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-/*
-* It's an interface for providing all the mechanism
-* to make the respective API calls from the Use Cases
-* */
+/**
+ * It's an interface for providing all the mechanism
+ * to make the respective API calls from the Use Cases
+ */
 interface ApiService {
 
     @GET("/products")

@@ -9,11 +9,11 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-/*
-* It's a fake implementation of GetProductListUseCase
-* It provides all the mechanism similar to real
-* GetProductListUseCase to the respective test case
-* */
+/**
+ * It's a fake implementation of GetProductListUseCase
+ * It provides all the mechanism similar to real
+ * GetProductListUseCase to the respective test case
+ */
 class FakeGetProductListUseCase @Inject constructor(private val repositoryImpl: FakeRepositoryImpl) {
 
     operator fun invoke(): Flow<UiState<List<ProductItem>>> = flow {

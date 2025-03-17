@@ -12,13 +12,13 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
-/*
-* It's a VewModel class which is injected at constructor level
-* w.r.t the application context & acts an intermediate mechanism
-* in between view(UI layer) & API(data layer) with the help of GetProductDetailUseCase
-* and listens for any data changes/updates available from the data layer
-* & propagates the same to the UI layer accordingly
-* */
+/**
+ * It's a VewModel class which is injected at constructor level
+ * w.r.t the application context & acts an intermediate mechanism
+ * in between view(UI layer) & API(data layer) with the help of GetProductDetailUseCase
+ * and listens for any data changes/updates available from the data layer
+ * & propagates the same to the UI layer accordingly
+ */
 @HiltViewModel
 class ProductDetailVewModel @Inject constructor(private val productDetailUseCase: GetProductDetailUseCase) :
     ViewModel() {

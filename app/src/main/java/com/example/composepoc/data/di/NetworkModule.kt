@@ -12,10 +12,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-/*
-* It creates the Network module(Retrofit client) as a singleton component
-* & it's various methods, provided to any module(caller) injected at the application level
-* */
+/**
+ * It creates the Network module(Retrofit client) as a singleton component
+ * & it's various methods, provided to any module(caller) injected at the application level
+ */
 @InstallIn(SingletonComponent::class)
 @Module
 class NetworkModule {

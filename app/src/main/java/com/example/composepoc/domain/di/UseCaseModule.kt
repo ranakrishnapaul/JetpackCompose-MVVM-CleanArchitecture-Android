@@ -9,11 +9,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-/*
-* It creates the UseCase Module(Retrofit client)
-* as a singleton component & it's various methods,
-* provided to any module(caller) injected at the application level
-* */
+/**
+ * It creates the UseCase Module(Retrofit client)
+ * as a singleton component & it's various methods,
+ * provided to any module(caller) injected at the application level
+ */
 @InstallIn(SingletonComponent::class)
 @Module
 class UseCaseModule {

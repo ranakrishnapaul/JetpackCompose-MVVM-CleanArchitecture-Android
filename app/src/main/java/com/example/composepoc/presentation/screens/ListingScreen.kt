@@ -21,10 +21,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.composepoc.presentation.screens.component.ProductListItem
 import com.example.composepoc.presentation.viewmodel.ProductListVewModel
 
-/*
-* It's the ProductListingScreen Composable component which displays the
-* listing of product items returned from the REST API via ModelView component
-* */
+/**
+ * It's the ProductListingScreen Composable component which displays the
+ * listing of product items returned from the REST API via ModelView component
+ */
 @Preview(
     name = "Light Mode", showBackground = true, showSystemUi = true
 )

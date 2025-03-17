@@ -9,10 +9,10 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-/*
-* It's the Test case for GetProductListUseCase to validate
-* all the logics(REST API calls) provided by GetProductListUseCase
-* */
+/**
+ * It's the Test case for GetProductListUseCase to validate
+ * all the logics(REST API calls) provided by GetProductListUseCase
+ */
 class GetProductListUseCaseTest {
     private lateinit var fakeGetProductListUseCase: FakeGetProductListUseCase
     private lateinit var fakeRepositoryImpl: FakeRepositoryImpl

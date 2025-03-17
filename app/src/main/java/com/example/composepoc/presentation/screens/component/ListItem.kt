@@ -21,10 +21,10 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.composepoc.domain.model.ProductItem
 
-/*
-* It's the ProductListItem Composable component which returns
-* a customisable row item in the product listing screen
-* */
+/**
+ * It's the ProductListItem Composable component which returns
+ * a customisable row item in the product listing screen
+ */
 @Composable
 fun ProductListItem(category: ProductItem, onItemClick: (ProductItem) -> Unit) {
     Card(

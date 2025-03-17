@@ -9,12 +9,12 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-/*
-* It's the GetProductDetailUseCase class injected at the constructor level
-*  w.r.t the application context where the product details API gets called through
-* Repository Implementation & it acts as an intermediate mechanism in between
-* ViewModel & Repository(Where the respective REST API gets called)
-* */
+/**
+ * It's the GetProductDetailUseCase class injected at the constructor level
+ *  w.r.t the application context where the product details API gets called through
+ * Repository Implementation & it acts as an intermediate mechanism in between
+ * ViewModel & Repository(Where the respective REST API gets called)
+ */
 class GetProductDetailUseCase @Inject constructor(private val repositoryImpl: RepositoryImpl) {
 
     operator fun invoke(id: Int): Flow<UiState<ProductDetail>> = flow {
