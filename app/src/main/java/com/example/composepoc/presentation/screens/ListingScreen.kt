@@ -21,26 +21,32 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.composepoc.presentation.screens.component.ProductListItem
 import com.example.composepoc.presentation.viewmodel.ProductListVewModel
 
-@Preview(name = "Light Mode",
-    showBackground = true,
-    showSystemUi = true
+/*
+* It's the ProductListingScreen Composable component which displays the
+* listing of product items returned from the REST API via ModelView component
+* */
+@Preview(
+    name = "Light Mode", showBackground = true, showSystemUi = true
 )
-@Preview(name = "Dark Mode",
+@Preview(
+    name = "Dark Mode",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true,
     showSystemUi = true
 )
 @Composable
-fun ProductListingScreen (){
+fun ProductListingScreen() {
 
-    val viewModel : ProductListVewModel = hiltViewModel()
-    val context  = LocalContext.current
+    val viewModel: ProductListVewModel = hiltViewModel()
+    val context = LocalContext.current
     var result = viewModel.productList.value
 
-    if(result.isLoading){
-        Column(modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center) {
+    if (result.isLoading) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
             CircularProgressIndicator(modifier = Modifier.size(50.dp))
         }
 
@@ -49,19 +55,23 @@ fun ProductListingScreen (){
     result.data?.let {
         Column(modifier = Modifier.fillMaxSize()) {
             LazyColumn {
-                items(it){ item->
-                    ProductListItem(item){ product->
-                        Toast.makeText(context,product.title,Toast.LENGTH_SHORT).show()
+                items(it) { item ->
+                    ProductListItem(item) { product ->
+                        Toast.makeText(context, product.title, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
     }
 
-    if(result.error.isNotEmpty()){
-        Column(modifier = Modifier.fillMaxSize().padding(all = 10.dp),
+    if (result.error.isNotEmpty()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(all = 10.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center) {
+            verticalArrangement = Arrangement.Center
+        ) {
             Text(text = result.error.toString())
         }
     }

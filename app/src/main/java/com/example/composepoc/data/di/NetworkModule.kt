@@ -12,28 +12,30 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+/*
+* It creates the Network module(Retrofit client) as a singleton component
+* & it's various methods, provided to any module(caller) injected at the application level
+* */
 @InstallIn(SingletonComponent::class)
 @Module
 class NetworkModule {
 
     @Provides
     @Singleton
-    fun providerRetrofit() : Retrofit{
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    fun providerRetrofit(): Retrofit {
+        return Retrofit.Builder().baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
     @Provides
     @Singleton
-    fun providerApiService(retrofit: Retrofit) : ApiService {
+    fun providerApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
 
     @Provides
     @Singleton
-    fun providerRepositoryImpl(apiService: ApiService) : Repository {
+    fun providerRepositoryImpl(apiService: ApiService): Repository {
         return RepositoryImpl(apiService)
     }
 

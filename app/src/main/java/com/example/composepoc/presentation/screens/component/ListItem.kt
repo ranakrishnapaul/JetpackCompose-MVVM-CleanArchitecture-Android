@@ -21,20 +21,39 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.composepoc.domain.model.ProductItem
 
+/*
+* It's the ProductListItem Composable component which returns
+* a customisable row item in the product listing screen
+* */
 @Composable
-fun ProductListItem(category: ProductItem, onItemClick : (ProductItem) -> Unit) {
-    Card (modifier = Modifier.fillMaxWidth().padding(8.dp)) {
-        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(5.dp).clickable {
-            onItemClick(category)
-        }) {
+fun ProductListItem(category: ProductItem, onItemClick: (ProductItem) -> Unit) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(5.dp)
+                .clickable {
+                    onItemClick(category)
+                }) {
             Image(
-                modifier = Modifier.size(200.dp).padding(8.dp).weight(0.4f),
+                modifier = Modifier
+                    .size(200.dp)
+                    .padding(8.dp)
+                    .weight(0.4f),
                 painter = rememberAsyncImagePainter(category.image),
-                contentDescription = ""
+                contentDescription = "Product image"
             )
             ProductItemDescription(category, Modifier.weight(0.6f))
         }
-        Spacer(modifier = Modifier.fillMaxWidth().height(1.dp))
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(1.dp)
+        )
     }
 }
 
