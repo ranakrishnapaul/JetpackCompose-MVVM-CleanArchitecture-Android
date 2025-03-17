@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 /**
  * It's the GetProductDetailUseCase class injected at the constructor level
- *  w.r.t the application context where the product details API gets called through
+ * w.r.t the application context where the product details API gets called through
  * Repository Implementation & it acts as an intermediate mechanism in between
  * ViewModel & Repository(Where the respective REST API gets called)
  */
