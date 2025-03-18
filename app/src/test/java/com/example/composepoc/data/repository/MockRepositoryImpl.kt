@@ -5,10 +5,10 @@ import com.example.composepoc.domain.model.ProductItem
 import com.example.composepoc.domain.repository.Repository
 
 /**
- * It's a fake implementation of RepositoryImpl
+ * It's a mock implementation of RepositoryImpl
  * It provides all mock data to the test cases
  */
-class FakeRepositoryImpl : Repository {
+class MockRepositoryImpl : Repository {
     // List of products
     val item1 = ProductItem(1, "image1", "Shirt", "Description1")
     val item2 = ProductItem(2, "image2", "Saree", "Description2")
