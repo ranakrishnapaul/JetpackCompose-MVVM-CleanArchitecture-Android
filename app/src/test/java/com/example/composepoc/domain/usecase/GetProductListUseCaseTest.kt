@@ -47,6 +47,28 @@ class GetProductListUseCaseTest {
     }
 
     @Test
+    fun testIfListOfProducts_EmptyOrNot_ReturnedFromAPI(): Unit = runBlocking {
+        mockGetProductListUseCase.invoke().onEach {
+            when (it) {
+                is UiState.Loading -> {
+                    // Loading...
+                }
+
+                is UiState.Success -> {
+                    // List of products
+                    productListItem = it.data!!
+                    print("Inside Test4()")
+                }
+
+                is UiState.Error -> {
+                    // Error
+                }
+            }
+        }
+        Truth.assertThat((productListItem.isNotEmpty())).isTrue()
+    }
+
+    @Test
     fun testForCorrectProductItem_FromListOfProducts_ReturnedFromAPI(): Unit = runBlocking {
         mockGetProductListUseCase.invoke().onEach {
             when (it) {
@@ -65,10 +87,35 @@ class GetProductListUseCaseTest {
                 }
             }
         }
-        Truth.assertThat((productListItem.get(0).id == 1)).isTrue()
-        Truth.assertThat((productListItem.get(0).image == "image1")).isTrue()
-        Truth.assertThat((productListItem.get(0).title == "Shirt")).isTrue()
-        Truth.assertThat((productListItem.get(0).description == "Description1")).isTrue()
+
+        productListItem.forEach {
+            when (it.id) {
+                1 -> {
+                    Truth.assertThat(it.image == "image1").isTrue()
+                    Truth.assertThat(it.title == "Shirt").isTrue()
+                    Truth.assertThat(it.description == "Description1").isTrue()
+                }
+
+                2 -> {
+                    Truth.assertThat(it.image == "image2").isTrue()
+                    Truth.assertThat(it.title == "Jacket").isTrue()
+                    Truth.assertThat(it.description == "Description2").isTrue()
+                }
+
+                3 -> {
+                    Truth.assertThat(it.image == "image3").isTrue()
+                    Truth.assertThat(it.title == "Laptop").isTrue()
+                    Truth.assertThat(it.description == "Description3").isTrue()
+                }
+
+                4 -> {
+                    Truth.assertThat(it.image == "image4").isTrue()
+                    Truth.assertThat(it.title == "TV").isTrue()
+                    Truth.assertThat(it.description == "Description4").isTrue()
+                }
+
+            }
+        }
     }
 
     @Test
@@ -90,55 +137,87 @@ class GetProductListUseCaseTest {
                 }
             }
         }
-        Truth.assertThat((productListItem.get(1).id == 0)).isFalse()
-        Truth.assertThat((productListItem.get(1).image == "")).isFalse()
-        Truth.assertThat((productListItem.get(1).title == "")).isFalse()
-        Truth.assertThat((productListItem.get(1).description == "")).isFalse()
+
+        productListItem.forEach {
+            when (it.id) {
+                1 -> {
+                    Truth.assertThat(it.image == "").isFalse()
+                    Truth.assertThat(it.title == "").isFalse()
+                    Truth.assertThat(it.description == "").isFalse()
+                }
+
+                2 -> {
+                    Truth.assertThat(it.image == "image20").isFalse()
+                    Truth.assertThat(it.title == "Jacket123").isFalse()
+                    Truth.assertThat(it.description == "Description123").isFalse()
+                }
+
+                3 -> {
+                    Truth.assertThat(it.image == "image30").isFalse()
+                    Truth.assertThat(it.title == "Laptop123").isFalse()
+                    Truth.assertThat(it.description == "Description145").isFalse()
+                }
+
+                4 -> {
+                    Truth.assertThat(it.image == "image40").isFalse()
+                    Truth.assertThat(it.title == "TV123").isFalse()
+                    Truth.assertThat(it.description == "Description123").isFalse()
+                }
+
+            }
+        }
     }
 
 
     @Test
-    fun testIfAnyDuplicateProductItemIsFound_InTheListOfProducts_ReturnedFromAPI(): Unit = runBlocking {
-        mockGetProductListUseCase.invoke().onEach {
-            when (it) {
-                is UiState.Loading -> {
-                    // Loading...
-                }
+    fun testIfAnyDuplicateProductItemIsFound_InTheListOfProducts_ReturnedFromAPI(): Unit =
+        runBlocking {
+            mockGetProductListUseCase.invoke().onEach {
+                when (it) {
+                    is UiState.Loading -> {
+                        // Loading...
+                    }
 
-                is UiState.Success -> {
-                    // List of products
-                    productListItem = it.data!!
-                    print("Inside Test3()")
-                }
+                    is UiState.Success -> {
+                        // List of products
+                        productListItem = it.data!!
+                        print("Inside Test3()")
+                    }
 
-                is UiState.Error -> {
-                    // Error
+                    is UiState.Error -> {
+                        // Error
+                    }
+                }
+            }
+
+            productListItem.forEach {
+                when (it.id) {
+                    1 -> {
+                        Truth.assertThat((productListItem.get(0))).isNoneOf(
+                            productListItem.get(1), productListItem.get(2), productListItem.get(3)
+                        )
+                    }
+
+                    2 -> {
+                        Truth.assertThat((productListItem.get(1))).isNoneOf(
+                            productListItem.get(0), productListItem.get(2), productListItem.get(3)
+                        )
+                    }
+
+                    3 -> {
+                        Truth.assertThat((productListItem.get(2))).isNoneOf(
+                            productListItem.get(0), productListItem.get(1), productListItem.get(3)
+                        )
+                    }
+
+                    4 -> {
+                        Truth.assertThat((productListItem.get(3))).isNoneOf(
+                            productListItem.get(0), productListItem.get(1), productListItem.get(2)
+                        )
+                    }
+
                 }
             }
         }
-        Truth.assertThat((productListItem.get(0) == productListItem.get(1))).isFalse()
-    }
-
-    @Test
-    fun testIfListOfProducts_EmptyOrNot_ReturnedFromAPI(): Unit = runBlocking {
-        mockGetProductListUseCase.invoke().onEach {
-            when (it) {
-                is UiState.Loading -> {
-                    // Loading...
-                }
-
-                is UiState.Success -> {
-                    // List of products
-                    productListItem = it.data!!
-                    print("Inside Test4()")
-                }
-
-                is UiState.Error -> {
-                    // Error
-                }
-            }
-        }
-        Truth.assertThat((productListItem.isNotEmpty())).isTrue()
-    }
 
 }
