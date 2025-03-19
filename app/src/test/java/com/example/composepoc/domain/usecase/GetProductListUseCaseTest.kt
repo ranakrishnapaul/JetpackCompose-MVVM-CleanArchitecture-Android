@@ -46,7 +46,7 @@ class GetProductListUseCaseTest {
     }
 
     @Test
-    fun testForCorrectProductTitleFromListOfProductsReturnedFromAPI(): Unit = runBlocking {
+    fun testForCorrectProductItemFromListOfProductsReturnedFromAPI(): Unit = runBlocking {
         mockGetProductListUseCase.invoke().onEach {
             when (it) {
                 is UiState.Loading -> {
@@ -63,11 +63,14 @@ class GetProductListUseCaseTest {
                 }
             }
         }
+        Truth.assertThat((productListItem.get(0).id.equals(1))).isTrue()
+        Truth.assertThat((productListItem.get(0).image.equals("image1"))).isTrue()
         Truth.assertThat((productListItem.get(0).title.equals("Shirt"))).isTrue()
+        Truth.assertThat((productListItem.get(0).description.equals("Description1"))).isTrue()
     }
 
     @Test
-    fun testForInCorrectProductTitleFromListOfProductsReturnedFromAPI(): Unit = runBlocking {
+    fun testForInCorrectProductItemFromListOfProductsReturnedFromAPI(): Unit = runBlocking {
         mockGetProductListUseCase.invoke().onEach {
             when (it) {
                 is UiState.Loading -> {
@@ -84,6 +87,9 @@ class GetProductListUseCaseTest {
                 }
             }
         }
+        Truth.assertThat((productListItem.get(1).id.equals(1))).isFalse()
+        Truth.assertThat((productListItem.get(1).image.equals("image1"))).isFalse()
         Truth.assertThat((productListItem.get(1).title.equals("Shirt"))).isFalse()
+        Truth.assertThat((productListItem.get(1).description.equals("Description1"))).isFalse()
     }
 }
