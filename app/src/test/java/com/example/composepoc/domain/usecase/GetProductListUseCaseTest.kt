@@ -47,7 +47,7 @@ class GetProductListUseCaseTest {
     }
 
     @Test
-    fun testForCorrectProductItemFromListOfProductsReturnedFromAPI(): Unit = runBlocking {
+    fun testForCorrectProductItem_FromListOfProducts_ReturnedFromAPI(): Unit = runBlocking {
         mockGetProductListUseCase.invoke().onEach {
             when (it) {
                 is UiState.Loading -> {
@@ -72,7 +72,7 @@ class GetProductListUseCaseTest {
     }
 
     @Test
-    fun testForInCorrectProductItemFromListOfProductsReturnedFromAPI(): Unit = runBlocking {
+    fun testForInCorrectProductItem_FromListOfProducts_ReturnedFromAPI(): Unit = runBlocking {
         mockGetProductListUseCase.invoke().onEach {
             when (it) {
                 is UiState.Loading -> {
@@ -98,7 +98,7 @@ class GetProductListUseCaseTest {
 
 
     @Test
-    fun testIfAnyDuplicateProductItemFoundInTheListOfProductsReturnedFromAPI(): Unit = runBlocking {
+    fun testIfAnyDuplicateProductItemIsFound_InTheListOfProducts_ReturnedFromAPI(): Unit = runBlocking {
         mockGetProductListUseCase.invoke().onEach {
             when (it) {
                 is UiState.Loading -> {
@@ -120,7 +120,7 @@ class GetProductListUseCaseTest {
     }
 
     @Test
-    fun testIfListOfProductsIsEmptyOrNotReturnedFromAPI(): Unit = runBlocking {
+    fun testIfListOfProducts_EmptyOrNot_ReturnedFromAPI(): Unit = runBlocking {
         mockGetProductListUseCase.invoke().onEach {
             when (it) {
                 is UiState.Loading -> {
