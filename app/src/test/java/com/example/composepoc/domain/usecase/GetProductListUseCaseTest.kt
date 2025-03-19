@@ -36,6 +36,7 @@ class GetProductListUseCaseTest {
                 is UiState.Success -> {
                     // List of products
                     productListItem = it.data!!
+                    print("Inside invoke()")
                 }
 
                 is UiState.Error -> {
@@ -56,6 +57,7 @@ class GetProductListUseCaseTest {
                 is UiState.Success -> {
                     // List of products
                     productListItem = it.data!!
+                    print("Inside Test1()")
                 }
 
                 is UiState.Error -> {
@@ -63,10 +65,10 @@ class GetProductListUseCaseTest {
                 }
             }
         }
-        Truth.assertThat((productListItem.get(0).id.equals(1))).isTrue()
-        Truth.assertThat((productListItem.get(0).image.equals("image1"))).isTrue()
-        Truth.assertThat((productListItem.get(0).title.equals("Shirt"))).isTrue()
-        Truth.assertThat((productListItem.get(0).description.equals("Description1"))).isTrue()
+        Truth.assertThat((productListItem.get(0).id == 1)).isTrue()
+        Truth.assertThat((productListItem.get(0).image == "image1")).isTrue()
+        Truth.assertThat((productListItem.get(0).title == "Shirt")).isTrue()
+        Truth.assertThat((productListItem.get(0).description == "Description1")).isTrue()
     }
 
     @Test
@@ -80,6 +82,7 @@ class GetProductListUseCaseTest {
                 is UiState.Success -> {
                     // List of products
                     productListItem = it.data!!
+                    print("Inside Test2()")
                 }
 
                 is UiState.Error -> {
@@ -87,9 +90,55 @@ class GetProductListUseCaseTest {
                 }
             }
         }
-        Truth.assertThat((productListItem.get(1).id.equals(1))).isFalse()
-        Truth.assertThat((productListItem.get(1).image.equals("image1"))).isFalse()
-        Truth.assertThat((productListItem.get(1).title.equals("Shirt"))).isFalse()
-        Truth.assertThat((productListItem.get(1).description.equals("Description1"))).isFalse()
+        Truth.assertThat((productListItem.get(1).id == 0)).isFalse()
+        Truth.assertThat((productListItem.get(1).image == "")).isFalse()
+        Truth.assertThat((productListItem.get(1).title == "")).isFalse()
+        Truth.assertThat((productListItem.get(1).description == "")).isFalse()
     }
+
+
+    @Test
+    fun testIfAnyDuplicateProductItemFoundInTheListOfProductsReturnedFromAPI(): Unit = runBlocking {
+        mockGetProductListUseCase.invoke().onEach {
+            when (it) {
+                is UiState.Loading -> {
+                    // Loading...
+                }
+
+                is UiState.Success -> {
+                    // List of products
+                    productListItem = it.data!!
+                    print("Inside Test3()")
+                }
+
+                is UiState.Error -> {
+                    // Error
+                }
+            }
+        }
+        Truth.assertThat((productListItem.get(0) == productListItem.get(1))).isFalse()
+    }
+
+    @Test
+    fun testIfListOfProductsIsEmptyOrNotReturnedFromAPI(): Unit = runBlocking {
+        mockGetProductListUseCase.invoke().onEach {
+            when (it) {
+                is UiState.Loading -> {
+                    // Loading...
+                }
+
+                is UiState.Success -> {
+                    // List of products
+                    productListItem = it.data!!
+                    print("Inside Test4()")
+                }
+
+                is UiState.Error -> {
+                    // Error
+                }
+            }
+        }
+        Truth.assertThat((productListItem.isNotEmpty())).isTrue()
+    }
+
 }

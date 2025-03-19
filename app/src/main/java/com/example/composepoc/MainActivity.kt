@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.composepoc.presentation.screens.ProductListingScreen
-import com.example.composepoc.ui.theme.ComposePOCTheme
+import com.example.composepoc.presentation.ui.theme.ComposePOCTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
