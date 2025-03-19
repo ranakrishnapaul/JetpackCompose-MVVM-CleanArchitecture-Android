@@ -36,7 +36,6 @@ class GetProductListUseCaseTest {
                 is UiState.Success -> {
                     // List of products
                     productListItem = it.data!!
-                    print("Inside invoke()")
                 }
 
                 is UiState.Error -> {
@@ -57,7 +56,6 @@ class GetProductListUseCaseTest {
                 is UiState.Success -> {
                     // List of products
                     productListItem = it.data!!
-                    print("Inside Test4()")
                 }
 
                 is UiState.Error -> {
@@ -79,7 +77,6 @@ class GetProductListUseCaseTest {
                 is UiState.Success -> {
                     // List of products
                     productListItem = it.data!!
-                    print("Inside Test1()")
                 }
 
                 is UiState.Error -> {
@@ -129,7 +126,6 @@ class GetProductListUseCaseTest {
                 is UiState.Success -> {
                     // List of products
                     productListItem = it.data!!
-                    print("Inside Test2()")
                 }
 
                 is UiState.Error -> {
@@ -181,7 +177,6 @@ class GetProductListUseCaseTest {
                     is UiState.Success -> {
                         // List of products
                         productListItem = it.data!!
-                        print("Inside Test3()")
                     }
 
                     is UiState.Error -> {

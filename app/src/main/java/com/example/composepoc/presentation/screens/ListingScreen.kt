@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -47,14 +48,18 @@ fun ProductListingScreen() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            CircularProgressIndicator(modifier = Modifier.size(50.dp))
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .size(50.dp)
+                    .testTag("ProductListingScreen_CircularProgressIndicatorTest")
+            )
         }
 
     }
 
     result.data?.let {
         Column(modifier = Modifier.fillMaxSize()) {
-            LazyColumn {
+            LazyColumn(modifier = Modifier.testTag("ProductListingScreen_LazyColumnTest")) {
                 items(it) { item ->
                     ProductListItem(item) { product ->
                         Toast.makeText(context, product.title, Toast.LENGTH_SHORT).show()
@@ -72,7 +77,10 @@ fun ProductListingScreen() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = result.error.toString())
+            Text(
+                text = result.error.toString(),
+                modifier = Modifier.testTag("ProductListingScreen_ErrorTextTest")
+            )
         }
     }
 
