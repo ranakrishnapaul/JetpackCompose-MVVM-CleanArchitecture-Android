@@ -10,13 +10,13 @@ import com.example.composepoc.domain.model.ProductItem
  * DTO(Received from rest API) into corresponding
  * product list & product details data model.
  */
-fun ProductListDTO.toProductList(): ProductItem {
+fun ProductListDTO.toProductListItem(): ProductItem {
     return ProductItem(
         id = this.id, image = this.image, title = this.title, description = this.description
     )
 }
 
-fun ProductListDTO.toProductDetail(): ProductDetail {
+fun ProductListDTO.toProductDetailsItem(): ProductDetail {
     return ProductDetail(
         category = this.category,
         description = this.description,

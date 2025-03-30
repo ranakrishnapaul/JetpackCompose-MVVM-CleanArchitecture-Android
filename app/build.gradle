@@ -90,4 +90,6 @@ dependencies {
     // ...with Kotlin.
     kaptTest("com.google.dagger:hilt-android-compiler:2.40.5")
     implementation "org.jetbrains.kotlin:kotlin-test:1.8.0"
+    //Mocktail
+    testImplementation 'io.mockk:mockk:1.12.0'
 }
